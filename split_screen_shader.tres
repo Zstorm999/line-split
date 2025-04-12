@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dqdpgo8rjq5wh"]
+
+[ext_resource type="Shader" uid="uid://bfbprb4unlxoa" path="res://split_screen_shader.gdshader" id="1_a1tdb"]
+
+[resource]
+shader = ExtResource("1_a1tdb")
+shader_parameter/visible = false
+shader_parameter/line_0 = Vector2(0, 0)
+shader_parameter/line_1 = Vector2(0, 0)
