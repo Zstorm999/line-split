@@ -8,7 +8,6 @@ extends CharacterBody2D
 @export var other: CharacterBody2D
 
 func _process(delta: float) -> void:
-	print("in main", is_main)
 	if not is_main:
 		_process_follow(delta)
 	else:
@@ -19,9 +18,6 @@ func _process_main(delta: float):
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	).normalized() * speed * delta
-	
-	#position = position + Vector2(1, 0.0)
-	#velocity = Vector2(10, 0.0)
 	
 	move_and_slide()
 

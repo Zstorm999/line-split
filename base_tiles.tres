@@ -1,10 +1,14 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dh8075toekqxl"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dh8075toekqxl"]
 
 [ext_resource type="Texture2D" uid="uid://dgx156wyfyt0q" path="res://Assets/ground_tiles.png" id="1_gwek6"]
-[ext_resource type="PackedScene" uid="uid://chpy0e5nh7gyu" path="res://selector_blue.tscn" id="1_ioj10"]
+[ext_resource type="PackedScene" uid="uid://chpy0e5nh7gyu" path="res://Tiles/selector_blue.tscn" id="1_ioj10"]
+[ext_resource type="PackedScene" uid="uid://dgkp3d3ydchjn" path="res://Tiles/start_tile.tscn" id="2_fidiw"]
+[ext_resource type="PackedScene" uid="uid://j0nidxk8esf4" path="res://Tiles/end_tile.tscn" id="3_4hye1"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_fidiw"]
 scenes/1/scene = ExtResource("1_ioj10")
+scenes/2/scene = ExtResource("2_fidiw")
+scenes/3/scene = ExtResource("3_4hye1")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ioj10"]
 texture = ExtResource("1_gwek6")
@@ -21,6 +25,7 @@ texture_region_size = Vector2i(32, 32)
 3:1/0 = 0
 2:2/0 = 0
 3:2/0 = 0
+1:1/0 = 0
 
 [resource]
 tile_size = Vector2i(32, 32)

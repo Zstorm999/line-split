@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://chpy0e5nh7gyu"]
+[gd_scene load_steps=5 format=3 uid="uid://chpy0e5nh7gyu"]
 
-[ext_resource type="Script" uid="uid://e4lrqjjauqfn" path="res://selector.gd" id="1_ewnmh"]
-[ext_resource type="Texture2D" uid="uid://dgx156wyfyt0q" path="res://Assets/ground_tiles.png" id="1_gvnos"]
+[ext_resource type="Texture2D" uid="uid://dgx156wyfyt0q" path="res://Assets/ground_tiles.png" id="1_173dq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewnmh"]
-atlas = ExtResource("1_gvnos")
+atlas = ExtResource("1_173dq")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4l1k"]
@@ -15,7 +14,6 @@ size = Vector2(32, 32)
 
 [node name="Selector" type="Area2D" groups=["selectors"]]
 disable_mode = 1
-script = ExtResource("1_ewnmh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_ewnmh")
@@ -26,6 +24,6 @@ shape = SubResource("RectangleShape2D_a4l1k")
 [node name="RigidBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0, -0.5)
+position = Vector2(0, -0.25)
 shape = SubResource("RectangleShape2D_gvnos")
 debug_color = Color(0.772549, 0.415686, 0.435294, 0.243137)

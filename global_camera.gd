@@ -79,10 +79,13 @@ func _process(delta: float) -> void:
 		else:
 			player2.is_main = false
 			player1.is_main = true
-
+	else:
+		output.material.set_shader_parameter("visible", false);
+	
 
 func _register_signals() -> void:
 	var new_selectors = get_tree().get_nodes_in_group("selectors")
+	print("registering selectors: ", new_selectors)
 	for s_raw in new_selectors:
 		var s = s_raw as Area2D
 		if not s:

@@ -1,0 +1,294 @@
+[gd_scene load_steps=20 format=3 uid="uid://ikn78ufs20qa"]
+
+[ext_resource type="Script" uid="uid://eptujethbw30" path="res://title_screen.gd" id="1_8vmu4"]
+[ext_resource type="PackedScene" uid="uid://ho5x8e0lk5nd" path="res://Levels/title_level.tscn" id="2_013yr"]
+[ext_resource type="Script" uid="uid://bartn24rc8t6s" path="res://title_camera.gd" id="3_8vmu4"]
+[ext_resource type="Theme" uid="uid://djhihytd5u2ms" path="res://title_theme.tres" id="9_8vmu4"]
+[ext_resource type="Material" uid="uid://dqdpgo8rjq5wh" path="res://split_screen_shader.tres" id="9_a64np"]
+[ext_resource type="Script" uid="uid://qg205yehq5b0" path="res://fake_pointer.gd" id="10_g2tdu"]
+[ext_resource type="Texture2D" uid="uid://c4p671x24cii" path="res://Assets/buttons.png" id="10_xfn3p"]
+[ext_resource type="Texture2D" uid="uid://bhyixy3mprmr4" path="res://icon.svg" id="11_7yan6"]
+[ext_resource type="PackedScene" uid="uid://yae4e6mgm8" path="res://player.tscn" id="13_fd0ao"]
+
+[sub_resource type="Gradient" id="Gradient_feb5d"]
+colors = PackedColorArray(0.212966, 0.301034, 0.611793, 1, 0.835548, 0.00594145, 0.718405, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ryrav"]
+size = Vector2(640, 360)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fc0e3"]
+size = Vector2(640, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+size = Vector2(1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vmu4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rhgbh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfn3p"]
+atlas = ExtResource("10_xfn3p")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhgbh"]
+atlas = ExtResource("10_xfn3p")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skmiq"]
+atlas = ExtResource("10_xfn3p")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf08s"]
+atlas = ExtResource("10_xfn3p")
+region = Rect2(128, 128, 128, 128)
+
+[node name="TitleScreen" type="Node2D" groups=["game"]]
+script = ExtResource("1_8vmu4")
+
+[node name="GlobalCamera" type="Node2D" parent="."]
+script = ExtResource("3_8vmu4")
+
+[node name="Line2D" type="Line2D" parent="GlobalCamera"]
+z_index = 5
+points = PackedVector2Array(257, -99, 433, 452)
+width = 3.0
+default_color = Color(1, 0.0627451, 1, 1)
+gradient = SubResource("Gradient_feb5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="GlobalCamera"]
+visible = false
+material = ExtResource("9_a64np")
+position = Vector2(320, 180)
+scale = Vector2(640, 320)
+texture = SubResource("PlaceholderTexture2D_ryrav")
+
+[node name="TextureRect" type="TextureRect" parent="GlobalCamera"]
+z_index = 1
+material = ExtResource("9_a64np")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_fc0e3")
+
+[node name="Viewport1" type="SubViewport" parent="GlobalCamera"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+size = Vector2i(640, 360)
+render_target_update_mode = 3
+
+[node name="FakePointer" type="Area2D" parent="GlobalCamera/Viewport1"]
+visible = false
+input_pickable = false
+script = ExtResource("10_g2tdu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GlobalCamera/Viewport1/FakePointer"]
+shape = SubResource("RectangleShape2D_fc0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="GlobalCamera/Viewport1/FakePointer"]
+z_index = 2
+scale = Vector2(0.0847521, 0.090535)
+texture = ExtResource("11_7yan6")
+
+[node name="Level Test" parent="GlobalCamera/Viewport1" instance=ExtResource("2_013yr")]
+
+[node name="Player1" parent="GlobalCamera/Viewport1" node_paths=PackedStringArray("other") instance=ExtResource("13_fd0ao")]
+visible = false
+position = Vector2(-7, 43)
+is_main = true
+offset = Vector2(0, -960)
+other = NodePath("../Player2")
+
+[node name="Camera1_link" type="RemoteTransform2D" parent="GlobalCamera/Viewport1/Player1"]
+remote_path = NodePath("../../Camera1")
+
+[node name="Player2" parent="GlobalCamera/Viewport1" node_paths=PackedStringArray("other") instance=ExtResource("13_fd0ao")]
+visible = false
+position = Vector2(-7, 43)
+offset = Vector2(0, 960)
+other = NodePath("../Player1")
+
+[node name="Camera1" type="Camera2D" parent="GlobalCamera/Viewport1"]
+position = Vector2(-7, 43)
+limit_left = -595
+limit_top = -325
+limit_right = 550
+limit_bottom = 325
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="GlobalCamera/Viewport1/Camera1"]
+remote_path = NodePath("../../../Viewport2/Camera2")
+
+[node name="Viewport2" type="SubViewport" parent="GlobalCamera"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+size = Vector2i(640, 360)
+render_target_update_mode = 3
+
+[node name="Camera2" type="Camera2D" parent="GlobalCamera/Viewport2"]
+position = Vector2(-7, 43)
+offset = Vector2(0, 960)
+limit_left = -595
+limit_top = -325
+limit_right = 550
+limit_bottom = 325
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_right = 117.0
+offset_bottom = 190.0
+grow_horizontal = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8vmu4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("9_8vmu4")
+theme_override_colors/font_color = Color(1, 0.42, 0.13, 1)
+theme_override_font_sizes/font_size = 65
+text = "Line"
+
+[node name="Label2" type="Label" parent="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("9_8vmu4")
+theme_override_colors/font_color = Color(0.561, 0, 0.99, 1)
+theme_override_font_sizes/font_size = 65
+text = "\\"
+
+[node name="Label3" type="Label" parent="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("9_8vmu4")
+theme_override_colors/font_color = Color(0, 0.566667, 0.85, 1)
+theme_override_font_sizes/font_size = 65
+text = "Split"
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8vmu4")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="StartButton" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("9_8vmu4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rhgbh")
+icon = SubResource("AtlasTexture_xfn3p")
+icon_alignment = 1
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("9_8vmu4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rhgbh")
+icon = SubResource("AtlasTexture_rhgbh")
+icon_alignment = 1
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("9_8vmu4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rhgbh")
+icon = SubResource("AtlasTexture_skmiq")
+icon_alignment = 1
+
+[node name="Credits" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_right = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8vmu4")
+
+[node name="Label" type="Label" parent="CanvasLayer/Credits/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("9_8vmu4")
+theme_override_colors/font_color = Color(0, 0.556863, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "A game by Zstorm"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Credits/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("9_8vmu4")
+theme_override_colors/font_color = Color(0, 0.556863, 0, 1)
+theme_override_font_sizes/font_size = 41
+text = "Made for the 2025 BDJ ESIEA GameJam"
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Credits/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 28
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8vmu4")
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Credits/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("9_8vmu4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rhgbh")
+icon = SubResource("AtlasTexture_lf08s")
+icon_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer2/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer2/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Credits/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

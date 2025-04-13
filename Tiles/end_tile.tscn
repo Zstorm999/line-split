@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://j0nidxk8esf4"]
+
+[ext_resource type="Texture2D" uid="uid://dgx156wyfyt0q" path="res://Assets/ground_tiles.png" id="1_3hxks"]
+[ext_resource type="Script" uid="uid://dqqwp635l5wrj" path="res://Tiles/end_tile.gd" id="1_mlxbd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ukgj"]
+atlas = ExtResource("1_3hxks")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoxni"]
+size = Vector2(26, 26)
+
+[node name="EndTile" type="Area2D" groups=["end"]]
+script = ExtResource("1_mlxbd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_1ukgj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eoxni")

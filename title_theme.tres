@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://djhihytd5u2ms"]
+
+[ext_resource type="FontFile" uid="uid://dtsrs38vnljbu" path="res://Assets/Jersey15-Regular.ttf" id="1_6omp1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3mrbe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2tid"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6m7ux"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6omp1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d4d3v"]
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxEmpty_3mrbe")
+Button/styles/focus = SubResource("StyleBoxEmpty_f2tid")
+Button/styles/hover = SubResource("StyleBoxEmpty_6m7ux")
+Button/styles/normal = SubResource("StyleBoxEmpty_6omp1")
+Button/styles/pressed = SubResource("StyleBoxEmpty_d4d3v")
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("1_6omp1")

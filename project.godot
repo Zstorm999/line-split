@@ -12,7 +12,7 @@ config_version=5
 
 config/name="line split"
 config/tags=PackedStringArray("gamejam")
-run/main_scene="uid://dydutq3tmfiqb"
+run/main_scene="uid://ikn78ufs20qa"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -27,6 +27,10 @@ window/stretch/scale_mode="integer"
 [global_group]
 
 selectors=""
+Level="This node is a level"
+start="starting tile"
+end="end tile"
+game=""
 
 [input]
 

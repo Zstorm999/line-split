@@ -1,11 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://dydutq3tmfiqb"]
+[gd_scene load_steps=20 format=3 uid="uid://dydutq3tmfiqb"]
 
+[ext_resource type="Script" uid="uid://bmhkoxgk34s66" path="res://game.gd" id="1_eow3j"]
 [ext_resource type="Script" uid="uid://cr6gmxnwef31v" path="res://global_camera.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://yae4e6mgm8" path="res://player.tscn" id="2_e2o6t"]
 [ext_resource type="Material" uid="uid://dqdpgo8rjq5wh" path="res://split_screen_shader.tres" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dfvliycwdkld8" path="res://Levels/level_01.tscn" id="2_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://do8gju3jt67mn" path="res://Levels/level_03.tscn" id="2_lc2xo"]
+[ext_resource type="PackedScene" uid="uid://udoh6utyab7k" path="res://Levels/maze_b02.tscn" id="2_vef74"]
+[ext_resource type="PackedScene" uid="uid://dmjyqka8arjqp" path="res://Levels/maze_r01.tscn" id="3_mfdv2"]
 [ext_resource type="Script" uid="uid://qg205yehq5b0" path="res://fake_pointer.gd" id="3_ryrav"]
-[ext_resource type="PackedScene" uid="uid://d3owxiw4ikfh1" path="res://test_level.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://d3owxiw4ikfh1" path="res://Levels/test_level.tscn" id="4_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://bhyixy3mprmr4" path="res://icon.svg" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://c8srb7rfa5v7n" path="res://Levels/maze_b01.tscn" id="5_hve3p"]
+[ext_resource type="PackedScene" uid="uid://cbr5ucyce65ur" path="res://Levels/level_02.tscn" id="7_iotsf"]
+[ext_resource type="PackedScene" uid="uid://b2vp4nbidgo4j" path="res://Levels/level_04.tscn" id="8_7sc4i"]
+[ext_resource type="PackedScene" uid="uid://dmw1mbmy0v685" path="res://Levels/level_final.tscn" id="8_215e1"]
 
 [sub_resource type="Gradient" id="Gradient_feb5d"]
 colors = PackedColorArray(0.212966, 0.301034, 0.611793, 1, 0.835548, 0.00594145, 0.718405, 1)
@@ -19,7 +28,9 @@ size = Vector2(640, 360)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
 size = Vector2(1, 1)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["game"]]
+script = ExtResource("1_eow3j")
+levels = Array[PackedScene]([ExtResource("8_7sc4i"), ExtResource("5_hve3p"), ExtResource("3_mfdv2"), ExtResource("2_vef74"), ExtResource("2_j5wjh"), ExtResource("7_iotsf"), ExtResource("2_lc2xo"), ExtResource("8_215e1")])
 
 [node name="GlobalCamera" type="Node2D" parent="."]
 script = ExtResource("1_feb5d")
@@ -117,3 +128,8 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
