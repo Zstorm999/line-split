@@ -43,7 +43,7 @@ func _on_level_end_reached(player, end_node):
 		return
 	
 	if level_idx + 1 == levels.size():
-		print("you reached the end !")
+		get_tree().change_scene_to_file("res://title_screen.tscn")
 		return
 	
 	level_idx += 1

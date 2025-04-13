@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by8eggun1b7v5"
-path="res://.godot/imported/base_out_atlas.png-f82242822bbfcf3a94fccb2de2b7697b.ctex"
+uid="uid://bpj34b6jjqi1d"
+path="res://.godot/imported/skeleton.png-f1788bc2382b9bc5c7e3d2742ae7e946.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Atlas/base_out_atlas.png"
-dest_files=["res://.godot/imported/base_out_atlas.png-f82242822bbfcf3a94fccb2de2b7697b.ctex"]
+source_file="res://Assets/skeleton.png"
+dest_files=["res://.godot/imported/skeleton.png-f1788bc2382b9bc5c7e3d2742ae7e946.ctex"]
 
 [params]
 

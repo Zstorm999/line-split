@@ -76,9 +76,12 @@ func _process(delta: float) -> void:
 		if direction.cross(player_pos) > 0:
 			player1.is_main = false
 			player2.is_main = true
+			$AudioStreamPlayer.set
+			$AudioStreamPlayer.bus = "Distorted"
 		else:
 			player2.is_main = false
 			player1.is_main = true
+			$AudioStreamPlayer.bus = "Master"
 	else:
 		output.material.set_shader_parameter("visible", false);
 	

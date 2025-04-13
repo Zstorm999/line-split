@@ -3,6 +3,7 @@ extends Label
 func _ready() -> void:
 	var time = get_tree().root.get_child(0).seconds
 	
+	print("finished in ", time)
 	var minutes = int(time / 60)
 	var seconds = time % 60
 	
